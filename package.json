@@ -4,6 +4,9 @@
   "description": "express ts starter",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
     "test": "npm test"
   },
   "repository": {
