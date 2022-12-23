@@ -1,17 +1,21 @@
 import express, { Express } from 'express';
+import compression from "compression";  // compresses requests
 import routes from './routes/index';
+import authRoute from './routes/auth.route';
 
 const router: Express = express();
 
 // Create Express server
 const app = express();
 /** Parse the request */
-router.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 /** Takes care of JSON data */
-router.use(express.json());
+app.use(express.json());
+app.use(compression());
 
 /** Routes */
-router.use('/', routes);
+app.use(routes);
+app.use(authRoute);
 
 /** Error handling */
 router.use((req, res, next) => {
