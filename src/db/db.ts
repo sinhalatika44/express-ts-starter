@@ -1,15 +1,25 @@
 import mysql from 'mysql2/promise';
+import config from 'config';
+
+interface DB_CONFIG {
+    DB_NAME: string;
+    HOST: string;
+    PASSWORD: string;
+    USER: string;
+};
 
 const dbHandle: any = {};
+const DATABASE: DB_CONFIG = config.get('DATABASE');
+console.log(DATABASE?.DB_NAME);
 const DB_NAME: string = 'YOUR_DB_NAME';
 
 const connect = async(dbName: string) => {
     try {
         const connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'root',
-            database: dbName || DB_NAME
+            host: DATABASE?.HOST || 'localhost',
+            user: DATABASE?.USER || 'root',
+            password: DATABASE?.PASSWORD || 'root',
+            database: dbName || DATABASE?.DB_NAME || DB_NAME
         });
         dbHandle[dbName] = connection;
         return connection;
