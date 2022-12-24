@@ -6,7 +6,7 @@ import routes from './routes/index';
 import authRoute from './routes/auth.route';
 import db from './db/db';
 
-const dbName: string = 'your_db' || process?.env?.DB_NAME;
+const dbName: string = 'db_free_hire' || process?.env?.DB_NAME;
 
 const router: Express = express();
 
