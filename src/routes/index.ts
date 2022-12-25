@@ -2,6 +2,7 @@ import express from 'express';
 import { Request, Response } from 'express';
 
 import authMiddleware from '../middlewares/auth';
+import logMiddleware from '../middlewares/logger.middleware';
 
 const router = express.Router();
 

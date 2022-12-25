@@ -8,7 +8,7 @@ interface mobile_login {
     otp: string;
 };
 
-const login = async(payload: email_login | mobile_login) => {
+const login = async(payload: email_login) => {
     try {
         return {
             error: false,

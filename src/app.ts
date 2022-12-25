@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import compression from "compression";  // compresses requests
 import dotenv from "dotenv";
 import fs from "fs";
+import logMiddleware from './middlewares/logger.middleware';
 import routes from './routes/index';
 import authRoute from './routes/auth.route';
 import db from './db/db';
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 /** Takes care of JSON data */
 app.use(express.json());
 app.use(compression());
+app.all('*', logMiddleware);
 
 if (fs.existsSync(".env")) {
     dotenv.config({ path: ".env" });
