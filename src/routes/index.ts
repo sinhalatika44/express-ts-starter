@@ -1,6 +1,8 @@
 import express from 'express';
 import { Request, Response } from 'express';
 
+import authMiddleware from '../middlewares/auth';
+
 const router = express.Router();
 
 interface LocationWithTimezone {
@@ -46,6 +48,6 @@ const getLocationsWithTimezones = (request: Request, response: Response,) => {
     response.status(200).json(locations);
   };
 
-router.get('/timezone', getLocationsWithTimezones);
+router.get('/timezone', authMiddleware, getLocationsWithTimezones);
 
 export = router;
